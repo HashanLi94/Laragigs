@@ -7,26 +7,20 @@
 
 <body id="main-body">
 
-<!--main wrapper-->
-<div id="main-wrapper">
+<!--top nav-->
+@include('navs.navbar-top')
+<!--top nav-->
 
-    <!--top nav-->
-    @include('navs.navbar-top')
-    <!--top nav-->
-
-    <!--page wrapper-->
-    <div class="page-wrapper">
-
-        <!-- main content -->
-        @yield('content')
-        <!-- /#main content -->
-
-    </div>
-    <!--page wrapper-->
-</div>
+<!-- main content -->
+<main class="mb-40">
+    @yield('content')
+</main>
+<!-- /#main content -->
 
 <!--page footer-->
 @include('layout.footer')
+
+<x-flash-messages />
 
 <!--js footer-->
 @include('layout.footer-js')
