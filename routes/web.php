@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\Listing;
+use App\Http\Controllers\ListingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -134,18 +135,39 @@ use App\Models\Listing;
 //});
 
 // laragigs App routes
-Route::get('/', function () {
-    $payload = [
-        'listings' => Listing::all(),
-    ];
+//Route::get('/', function () {
+//    $payload = [
+//        'listings' => Listing::all(),
+//    ];
+//
+//    return view('pages/listings/listings', $payload);
+//});
 
-    return view('pages/listings/listings', $payload);
-});
+//Route::get('/listing/{id}', function ($id) {
+//    $payload = [
+//        'listing' => Listing::find($id)
+//    ];
+//
+//    return view('pages/listings/listing',  $payload);
+//});
 
-Route::get('/listing/{id}', function ($id) {
-    $payload = [
-        'listing' => Listing::find($id)
-    ];
+// Route model handling
+//Route::get('/listing/{listing}', function (Listing $listing) {
+//    $payload = [
+//        'listing' => $listing
+//    ];
+//
+//    return view('pages/listings/listing',  $payload);
+//});
 
-    return view('pages/listings/listing',  $payload);
-});
+// using controllers
+Route::get('/', [ListingController::class, 'index']);
+
+// show the listings
+Route::get('/listing/{listing}', [ListingController::class, 'show']);
+
+// create form
+Route::get('/listings/create', [ListingController::class, 'create']);
+
+// Save the listing data
+Route::post('listings/listing-create', [ListingController::class, 'store']);
